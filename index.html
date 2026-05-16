@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gokuldham Cloud Hosting</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #03060f;
+    --surface: #080e1f;
+    --surface2: #0d1628;
+    --border: rgba(99,179,237,0.12);
+    --accent: #3b8ef3;
+    --accent2: #00e5c9;
+    --text: #e8edf8;
+    --muted: #6b7fa3;
+    --white: #ffffff;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--text); overflow-x:hidden; }
+
+  /* PAGE SYSTEM */
+  .page { display:none; min-height:100vh; }
+  .page.active { display:block; animation:fadeIn 0.4s ease; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  /* NAV */
+  nav {
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:1.1rem 5%;
+    background:rgba(3,6,15,0.82);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid var(--border);
+  }
+  .logo { font-family:'Syne',sans-serif; font-size:1.35rem; font-weight:800; color:var(--white); cursor:pointer; user-select:none; }
+  .logo span { color:var(--accent); }
+  .nav-links { display:flex; gap:1.8rem; list-style:none; }
+  .nav-links a { color:var(--muted); text-decoration:none; font-size:0.875rem; font-weight:500; transition:color 0.2s; cursor:pointer; }
+  .nav-links a:hover { color:var(--text); }
+  .nav-right { display:flex; align-items:center; gap:1rem; }
+  .nav-cta { background:var(--accent); color:#fff; border:none; padding:0.55rem 1.3rem; border-radius:6px; font-family:'DM Sans',sans-serif; font-weight:500; font-size:0.875rem; cursor:pointer; transition:opacity 0.2s,transform 0.2s; }
+  .nav-cta:hover { opacity:0.85; transform:translateY(-1px); }
+  .back-btn { background:transparent; border:1px solid var(--border); color:var(--muted); padding:0.45rem 1rem; border-radius:6px; font-family:'DM Sans',sans-serif; font-size:0.8rem; cursor:pointer; transition:all 0.2s; }
+  .back-btn:hover { border-color:var(--accent); color:var(--text); }
+  .breadcrumb { font-size:0.78rem; color:var(--muted); display:flex; align-items:center; gap:0.4rem; }
+  .breadcrumb span { color:var(--accent2); font-weight:600; }
+
+  /* HERO */
+  .hero { min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:7rem 5% 4rem; position:relative; overflow:hidden; }
+  .hero-grid { position:absolute; inset:0; background-image:linear-gradient(rgba(59,142,243,0.055) 1px,transparent 1px),linear-gradient(90deg,rgba(59,142,243,0.055) 1px,transparent 1px); background-size:48px 48px; mask-image:radial-gradient(ellipse 80% 70% at 50% 50%,black,transparent); }
+  .hero-glow { position:absolute; width:700px; height:700px; border-radius:50%; background:radial-gradient(circle,rgba(59,142,243,0.15) 0%,transparent 70%); top:50%; left:50%; transform:translate(-50%,-55%); pointer-events:none; }
+  .badge { display:inline-flex; align-items:center; gap:0.5rem; background:rgba(59,142,243,0.1); border:1px solid rgba(59,142,243,0.25); color:var(--accent); padding:0.32rem 1rem; border-radius:999px; font-size:0.78rem; font-weight:500; margin-bottom:1.6rem; animation:fadeUp 0.6s ease both; }
+  .badge-dot { width:6px; height:6px; background:var(--accent2); border-radius:50%; animation:pulse 2s infinite; flex-shrink:0; }
+  h1 { font-family:'Syne',sans-serif; font-size:clamp(2.6rem,5.5vw,5rem); font-weight:800; line-height:1.06; letter-spacing:-2px; color:var(--white); max-width:780px; animation:fadeUp 0.7s 0.1s ease both; }
+  h1 .highlight { background:linear-gradient(135deg,var(--accent),var(--accent2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .hero-sub { margin-top:1.3rem; font-size:1.05rem; color:var(--muted); max-width:500px; line-height:1.75; font-weight:300; animation:fadeUp 0.7s 0.2s ease both; }
+
+  /* SERVICE SELECTOR */
+  .choose-label { margin-top:3rem; font-size:0.75rem; font-weight:600; letter-spacing:2.5px; text-transform:uppercase; color:var(--muted); margin-bottom:1.2rem; animation:fadeUp 0.7s 0.28s ease both; }
+  .service-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,220px)); gap:1.1rem; justify-content:center; animation:fadeUp 0.7s 0.35s ease both; }
+  .service-card { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:1.8rem 1.4rem; cursor:pointer; transition:border-color 0.25s,transform 0.25s,box-shadow 0.25s; text-align:center; position:relative; overflow:hidden; }
+  .service-card::after { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(59,142,243,0.07),transparent); opacity:0; transition:opacity 0.25s; }
+  .service-card:hover::after { opacity:1; }
+  .service-card:hover { border-color:var(--accent); transform:translateY(-7px); box-shadow:0 18px 50px rgba(59,142,243,0.16); }
+  .svc-icon { font-size:2.6rem; margin-bottom:0.8rem; display:block; }
+  .svc-name { font-family:'Syne',sans-serif; font-size:0.95rem; font-weight:700; color:var(--white); margin-bottom:0.4rem; }
+  .svc-tag { font-size:0.77rem; color:var(--muted); line-height:1.5; }
+  .svc-arrow { display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px; border-radius:50%; background:rgba(59,142,243,0.12); color:var(--accent); font-size:0.8rem; margin-top:0.9rem; transition:background 0.2s,transform 0.2s; }
+  .service-card:hover .svc-arrow { background:var(--accent); color:#fff; transform:translateX(3px); }
+
+  .hero-stats { display:flex; gap:2.5rem; margin-top:3.5rem; animation:fadeUp 0.7s 0.45s ease both; flex-wrap:wrap; justify-content:center; }
+  .stat { text-align:center; }
+  .stat-num { font-family:'Syne',sans-serif; font-size:1.65rem; font-weight:700; color:var(--white); }
+  .stat-label { font-size:0.76rem; color:var(--muted); margin-top:0.15rem; }
+
+  /* DETAIL HERO */
+  .detail-hero { padding:9rem 5% 4.5rem; position:relative; overflow:hidden; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; }
+  .detail-badge { display:inline-flex; align-items:center; gap:0.6rem; background:rgba(59,142,243,0.1); border:1px solid rgba(59,142,243,0.25); color:var(--accent); padding:0.35rem 1.1rem; border-radius:999px; font-size:0.78rem; font-weight:500; margin-bottom:1.2rem; }
+  .detail-icon { font-size:3.8rem; margin-bottom:0.8rem; }
+  .detail-title { font-family:'Syne',sans-serif; font-size:clamp(2rem,4vw,3.8rem); font-weight:800; color:var(--white); letter-spacing:-1.5px; line-height:1.1; max-width:680px; }
+  .detail-sub { font-size:1rem; color:var(--muted); max-width:510px; line-height:1.75; margin-top:1rem; font-weight:300; }
+
+  /* SECTION */
+  .section-label { font-size:0.72rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--accent); margin-bottom:0.5rem; }
+  .section-title { font-family:'Syne',sans-serif; font-size:clamp(1.6rem,2.8vw,2.4rem); font-weight:700; color:var(--white); letter-spacing:-1px; line-height:1.15; }
+
+  /* PRICING */
+  .pricing-section { padding:5rem 5%; }
+  .pricing-header { text-align:center; margin-bottom:3.2rem; }
+  .pricing-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1.4rem; max-width:980px; margin:0 auto; }
+  .pricing-card { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:2.2rem 1.8rem; position:relative; transition:transform 0.3s,border-color 0.3s; }
+  .pricing-card:hover { transform:translateY(-5px); border-color:rgba(59,142,243,0.28); }
+  .pricing-card.popular { border-color:var(--accent); background:var(--surface2); }
+  .popular-badge { position:absolute; top:-13px; left:50%; transform:translateX(-50%); background:var(--accent); color:#fff; font-size:0.68rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; padding:0.28rem 1rem; border-radius:999px; white-space:nowrap; }
+  .plan-name { font-family:'Syne',sans-serif; font-size:0.82rem; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:0.9rem; }
+  .plan-price { display:flex; align-items:baseline; gap:2px; padding:0.2rem 0 0.4rem; }
+  .plan-price .cur { font-family:'Syne',sans-serif; font-size:1.25rem; font-weight:700; color:var(--white); align-self:flex-start; margin-top:7px; line-height:1; }
+  .plan-price .amt { font-family:'Syne',sans-serif; font-size:2.9rem; font-weight:800; color:var(--white); line-height:1; }
+  .plan-price .per { font-size:0.85rem; color:var(--muted); font-weight:400; align-self:flex-end; margin-bottom:4px; }
+  .plan-desc { font-size:0.82rem; color:var(--muted); margin-bottom:1.5rem; line-height:1.6; }
+  .plan-specs { list-style:none; margin-bottom:1.7rem; }
+  .plan-specs li { font-size:0.84rem; color:var(--text); padding:0.48rem 0; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:0.6rem; }
+  .plan-specs li:last-child { border-bottom:none; }
+  .chk { color:var(--accent2); font-weight:700; flex-shrink:0; }
+  .plan-btn { width:100%; padding:0.78rem; border-radius:8px; font-family:'DM Sans',sans-serif; font-size:0.88rem; font-weight:500; cursor:pointer; transition:all 0.2s; }
+  .plan-btn:hover { transform:translateY(-1px); }
+  .plan-btn.outline { background:transparent; border:1px solid var(--border); color:var(--text); }
+  .plan-btn.outline:hover { border-color:var(--accent); }
+  .plan-btn.filled { background:var(--accent); border:none; color:#fff; box-shadow:0 0 22px rgba(59,142,243,0.25); }
+  .plan-btn.filled:hover { box-shadow:0 0 34px rgba(59,142,243,0.42); }
+
+  /* SPECS FEATURES */
+  .specs-section { padding:4rem 5%; background:var(--surface); }
+  .specs-header { text-align:center; margin-bottom:2.5rem; }
+  .specs-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1.2rem; max-width:1080px; margin:0 auto; }
+  .spec-card { background:var(--surface2); border:1px solid var(--border); border-radius:14px; padding:1.7rem; transition:border-color 0.25s,transform 0.25s; }
+  .spec-card:hover { border-color:rgba(59,142,243,0.3); transform:translateY(-3px); }
+  .sc-icon { font-size:1.55rem; margin-bottom:0.7rem; }
+  .sc-title { font-family:'Syne',sans-serif; font-size:0.92rem; font-weight:700; color:var(--white); margin-bottom:0.35rem; }
+  .sc-desc { font-size:0.82rem; color:var(--muted); line-height:1.65; }
+
+  /* CTA BAND */
+  .cta-band { text-align:center; padding:5.5rem 5%; position:relative; overflow:hidden; }
+  .cta-glow { position:absolute; width:600px; height:400px; border-radius:50%; background:radial-gradient(circle,rgba(0,229,201,0.08) 0%,transparent 70%); top:50%; left:50%; transform:translate(-50%,-50%); pointer-events:none; }
+  .cta-band h2 { font-family:'Syne',sans-serif; font-size:clamp(1.8rem,3.2vw,2.9rem); font-weight:800; color:var(--white); letter-spacing:-1.2px; max-width:540px; margin:0 auto 0.8rem; }
+  .cta-band p { color:var(--muted); max-width:390px; margin:0 auto 2.2rem; font-size:0.93rem; line-height:1.7; }
+  .btn-primary { background:var(--accent); color:#fff; border:none; padding:0.85rem 2rem; border-radius:8px; font-size:0.95rem; font-weight:500; cursor:pointer; font-family:'DM Sans',sans-serif; transition:transform 0.2s,box-shadow 0.2s; box-shadow:0 0 28px rgba(59,142,243,0.28); }
+  .btn-primary:hover { transform:translateY(-2px); box-shadow:0 0 40px rgba(59,142,243,0.45); }
+
+  /* FOOTER */
+  footer { border-top:1px solid var(--border); background:var(--surface); padding:2.5rem 5%; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; }
+  footer .logo { font-size:1.1rem; }
+  footer p { font-size:0.78rem; color:var(--muted); }
+  .footer-links { display:flex; gap:1.5rem; }
+  .footer-links a { font-size:0.78rem; color:var(--muted); text-decoration:none; transition:color 0.2s; }
+  .footer-links a:hover { color:var(--text); }
+
+  @media (max-width:640px) {
+    .nav-links { display:none; }
+    .service-cards { grid-template-columns:1fr 1fr; }
+    .hero-stats { gap:1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo" onclick="showPage('home')">Gokuldham <span>Cloud</span></div>
+  <ul class="nav-links">
+    <li><a onclick="showPage('home')">Home</a></li>
+    <li><a onclick="showPage('vps')">VPS</a></li>
+    <li><a onclick="showPage('minecraft')">Minecraft</a></li>
+    <li><a onclick="showPage('web')">Web Server</a></li>
+    <li><a onclick="showPage('bot')">Bot Hosting</a></li>
+  </ul>
+  <div class="nav-right" id="nav-right">
+    <button class="nav-cta">Get Started Free</button>
+  </div>
+</nav>
+
+<!-- ══════════════════ HOME ══════════════════ -->
+<div class="page active" id="page-home">
+  <section class="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="badge"><span class="badge-dot"></span> 99.99% Uptime Guaranteed</div>
+    <h1>Hosting That Works <span class="highlight">As Hard As You</span></h1>
+    <p class="hero-sub">Lightning-fast servers, enterprise security, and 24/7 support — choose your hosting type to get started.</p>
+
+    <div class="choose-label">— Choose Your Hosting Type —</div>
+
+    <div class="service-cards">
+      <div class="service-card" onclick="showPage('vps')">
+        <span class="svc-icon">🖥️</span>
+        <div class="svc-name">VPS Hosting</div>
+        <div class="svc-tag">Dedicated virtual servers with full root access & custom configs</div>
+        <div class="svc-arrow">→</div>
+      </div>
+      <div class="service-card" onclick="showPage('minecraft')">
+        <span class="svc-icon">⛏️</span>
+        <div class="svc-name">Minecraft Server</div>
+        <div class="svc-tag">Lag-free Minecraft hosting with instant setup & mod support</div>
+        <div class="svc-arrow">→</div>
+      </div>
+      <div class="service-card" onclick="showPage('web')">
+        <span class="svc-icon">🌐</span>
+        <div class="svc-name">Web Server</div>
+        <div class="svc-tag">Fast & reliable web hosting with free SSL and cPanel</div>
+        <div class="svc-arrow">→</div>
+      </div>
+      <div class="service-card" onclick="showPage('bot')">
+        <span class="svc-icon">🤖</span>
+        <div class="svc-name">Bot Hosting</div>
+        <div class="svc-tag">24/7 Discord & Telegram bot hosting with zero downtime</div>
+        <div class="svc-arrow">→</div>
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">50K+</div><div class="stat-label">Happy Clients</div></div>
+      <div class="stat"><div class="stat-num">99.99%</div><div class="stat-label">Uptime SLA</div></div>
+      <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Expert Support</div></div>
+      <div class="stat"><div class="stat-num">10ms</div><div class="stat-label">Avg Response</div></div>
+    </div>
+  </section>
+  <footer>
+    <div class="logo" onclick="showPage('home')">Gokuldham <span>Cloud</span></div>
+    <p>© 2026 Gokuldham Cloud Hosting. All rights reserved.</p>
+    <div class="footer-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Support</a><a href="#">Docs</a></div>
+  </footer>
+</div>
+
+<!-- ══════════════════ VPS ══════════════════ -->
+<div class="page" id="page-vps">
+  <section class="detail-hero">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="detail-badge"><span class="badge-dot"></span> Full Root Access • KVM Virtualization</div>
+    <div class="detail-icon">🖥️</div>
+    <div class="detail-title">VPS <span class="highlight">Hosting</span></div>
+    <div class="detail-sub">Dedicated virtual private servers with guaranteed resources, full control, and blazing NVMe performance.</div>
+  </section>
+
+  <section class="pricing-section">
+    <div class="pricing-header">
+      <div class="section-label">VPS Plans</div>
+      <div class="section-title">Choose Your Power Level</div>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="plan-name">VPS Starter</div>
+        <div class="plan-price"><span class="cur">₹</span><span class="amt">349</span><span class="per">/mo</span></div>
+        <div class="plan-desc">Perfect for small apps, dev environments & testing.</div>
+        <ul class="plan-specs">
+          <li><span class="chk">✓</span> 1 vCPU Core</li>
+          <li><span class="chk">✓</span> 2 GB RAM</li>
+          <li><span class="chk">✓</span> 30 GB NVMe SSD</li>
+          <li><span class="chk">✓</span> 1 TB Bandwidth</li>
+          <li><span class="chk">✓</span> 1 Dedicated IP</li>
+          <li><span class="chk">✓</span> Full Root Access</li>
+          <li><span class="chk">✓</span> KVM Virtualization</li>
+        </ul>
+        <button class="plan-btn outline">Get Started</button>
+      </div>
+      <div class="pricing-card popular">
+        <div class="popular-badge">Most Popular</div>
+        <div class="plan-name">VPS Pro</div>
+        <div class="plan-price"><span class="cur">₹</span><span class="amt">799</span><span class="per">/mo</span></div>
+        <div class="plan-desc">Ideal for production apps, APIs & business workloads.</div>
+        <ul class="plan-specs">
+          <li><span class="chk">✓</span> 2 vCPU Cores</li>
+          <li><span class="chk">✓</span> 4 GB RAM</li>
+          <li><span class="chk">✓</span> 80 GB NVMe SSD</li>
+          <li><span class="chk">✓</span> 3 TB Bandwidth</li>
+          <li><span class="chk">✓</span> 2 Dedicated IPs</li>
+          <li><span class="chk">✓</span> Full Root Access</li>
+          <li><span class="chk">✓</span> DDoS Protection</li>
+        </ul>
+        <button class="plan-btn filled">Get Started</button>
+      </div>
+      <div class="pricing-card">
+        <div class="plan-name">VPS Elite</div>
+        <div class="plan-price"><span class="cur">₹</span><span class="amt">1499</span><span class="per">/mo</span></div>
+        <div class="plan-desc">For heavy workloads, large databases & high traffic.</div>
+        <ul class="plan-specs">
+          <li><span class="chk">✓</span> 4 vCPU Cores</li>
+          <li><span class="chk">✓</span> 8 GB RAM</li>
+          <li><span class="chk">✓</span> 160 GB NVMe SSD</li>
+          <li><span class="chk">✓</span> Unlimited Bandwidth</li>
+          <li><span class="chk">✓</span> 4 Dedicated IPs</li>
+          <li><span class="chk">✓</span> Full Root Access</li>
+          <li><span class="chk">✓</span> Priority 24/7 Support</li>
+        </ul>
+        <button class="plan-btn outline">Get Started</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="specs-section">
+    <div class="specs-header">
+      <div class="section-label">Why Our VPS</div>
+      <div class="section-title">Enterprise Infrastructure, Startup Price</div>
+    </div>
+    <div class="specs-grid">
+      <div class="spec-card"><div class="sc-icon">⚡</div><div class="sc-title">NVMe SSD Storage</div><div class="sc-desc">Up to 10x faster than regular SSDs. Apps boot instantly with zero IO bottlenecks.</div></div>
+      <div class="spec-card"><div class="sc-icon">🔒</div><div class="sc-title">KVM Virtualization</div><div class="sc-desc">True hardware-level isolation. Your resources are yours alone — no noisy neighbors.</div></div>
+      <div class="spec-card"><div class="sc-icon">🌐</div><div class="sc-title">Any OS You Want</div><div class="sc-desc">Ubuntu, Debian, CentOS, Windows — deploy any OS with one click from the panel.</div></div>
+      <div class="spec-card"><div class="sc-icon">🛡️</div><div class="sc-title">DDoS Protection</div><div class="sc-desc">Up to 1 Tbps mitigation keeps your server safe from attacks around the clock.</div></div>
+    </div>
+  </section>
+
+  <div class="cta-band">
+    <div class="cta-glow"></div>
+    <h2>Ready to Deploy Your VPS?</h2>
+    <p>Get your server online in under 60 seconds. No contracts, cancel anytime.</p>
+    <button class="btn-primary">Deploy Now →</button>
+  </div>
+
+  <footer>
+    <div class="logo" onclick="showPage('home')">Gokuldham <span>Cloud</span></div>
+    <p>© 2026 Gokuldham Cloud Hosting. All rights reserved.</p>
+    <div class="footer-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Support</a></div>
+  </footer>
+</div>
+
+<!-- ══════════════════ MINECRAFT ══════════════════ -->
+<div class="page" id="page-minecraft">
+  <section class="detail-hero">
+    <div class="hero-grid"></div>
+    <div class="hero-glow" style="background:radial-gradient(circle,rgba(76,175,80,0.14) 0%,transparent 70%);"></div>
+    <div class="detail-badge" style="background:rgba(76,175,80,0.1);border-color:rgba(76,175,80,0.3);color:#81c784;">
+      <span style="width:6px;height:6px;background:#aed581;border-radius:50%;animation:pulse 2s infinite;display:inline-block;flex-shrink:0;"></span>
+      Instant Setup • Mod Support
+    </div>
+    <div class="detail-icon">⛏️</div>
+    <div class="detail-title">Minecraft <span style="background:linear-gradient(135deg,#4caf50,#8bc34a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Server</span> Hosting</div>
+    <div class="detail-sub">Lag-free gameplay for you and your friends. Supports Vanilla, Spigot, Paper, Forge, Fabric & BungeeCord.</div>
+  </section>
+
+  <section class="pricing-section">
+    <div class="pricing-header">
+      <div class="section-label">Minecraft Plans</div>
+      <div class="section-title">Pick Your World Size</div>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="plan-name">Dirt Block</div>
+        <div class="plan-price"><span class="cur">₹</span><span class="amt">99</span><span class="per">/mo</span></div>
+        <div class="plan-desc">For small friend groups & casual survival servers.</div>
+        <ul class="plan-specs">
+          <li><span class="chk" style="color:#66bb6a;">✓</span> Up to 5 Players</li>
+          <li><span class="chk" style="color:#66bb6a;">✓</span> 2 GB RAM</li>
+          <li><span class="chk" style="color:#66bb6a;">✓</span> 10 GB SSD Storage</li>
+          <li><span class="chk" style="color:#66bb6a;">✓</span> Vanilla / Spigot</li>
+          <li><span class="chk" style="color:#66bb6a;">✓</span> Daily Backups</li>
+          <li><span class="chk" style="color:#66bb6a;">✓</span> Custom Domain</li>
+        </ul>
+        <button class="plan-btn outline">Get Started</button>
+      </div>
+      <div class="pricing-card popular" style="border-color:#4caf50;">
+        <div class="popular-badge" style="background:#4caf50;">Most Popular</div>
+        <div class="plan-name">Diamond Block</div>
+        <div class="plan-price"><span class="cur">₹</span><span class="amt">249</span><span class="per">/mo</span></div>
+        <div class="plan-desc">Perfect for medium communities with plugins & mods.</div>
+        <ul class="plan-specs">
+          <li><span class="chk" style="color:#66bb6a;">✓</span> Up to 20 Players</li>
+          <li><span class="chk" style="color:#66bb6a;">✓</span> 4 GB RAM</li>
+          <li><span class="chk" style="color:#66bb6a;">✓</span> 30 GB SSD Storage</li>
+          <li><span class="chk" style="color:#66bb6a;">✓</span> Paper / Forge / Fabric</li>
+          <li><span class="chk" style="color:#66bb6a;">✓</span> Unlimited Plugins</li>
+          <li><span class="chk" style="color:#66bb6a;">✓</span> DDoS Protection</li>
+        </ul>
+        <button class="plan-btn filled" style="background:#4caf50;box-shadow:0 0 22px rgba(76,175,80,0.28);">Get Started</button>
+      </div>
+      <div class="pricing-card">
+        <div class="plan-name">Netherite Block</div>
+        <div class="plan-price"><span class="cur">₹</span><span class="amt">549</span><span class="per">/mo</span></div>
+        <div class="plan-desc">For large public servers, networks & BungeeCord setups.</div>
+        <ul class="plan-specs">
+          <li><span class="chk" style="color:#66bb6a;">✓</span> Unlimited Players</li>
+          <li><span class="chk" style="color:#66bb6a;">✓</span> 8 GB RAM</li>
+          <li><span class="chk" style="color:#66bb6a;">✓</span> 80 GB NVMe SSD</li>
+          <li><span class="chk" style="color:#66bb6a;">✓</span> BungeeCord / Velocity</li>
+          <li><span class="chk" style="color:#66bb6a;">✓</span> Dedicated IP</li>
+          <li><span class="chk" style="color:#66bb6a;">✓</span> Priority 24/7 Support</li>
+        </ul>
+        <button class="plan-btn outline">Get Started</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="specs-section">
+    <div class="specs-header">
+      <div class="section-label">Server Features</div>
+      <div class="section-title">Built for Gamers, by Gamers</div>
+    </div>
+    <div class="specs-grid">
+      <div class="spec-card"><div class="sc-icon">🎮</div><div class="sc-title">One-Click Install</div><div class="sc-desc">Vanilla, Spigot, Paper, Forge, Fabric — install any server type in one click from our panel.</div></div>
+      <div class="spec-card"><div class="sc-icon">⚡</div><div class="sc-title">Low Latency India</div><div class="sc-desc">Servers in Mumbai & Delhi NCR for the lowest ping for Indian players.</div></div>
+      <div class="spec-card"><div class="sc-icon">🔌</div><div class="sc-title">Plugin & Mod Support</div><div class="sc-desc">Upload unlimited plugins and mods. Full FTP access included on all plans.</div></div>
+      <div class="spec-card"><div class="sc-icon">💾</div><div class="sc-title">Automatic Backups</div><div class="sc-desc">Daily world backups so you never lose your builds. One-click restore anytime.</div></div>
+    </div>
+  </section>
+
+  <div class="cta-band">
+    <div class="cta-glow" style="background:radial-gradient(circle,rgba(76,175,80,0.08) 0%,transparent 70%);"></div>
+    <h2>Start Your Adventure Today!</h2>
+    <p>Your Minecraft server goes live in under 60 seconds. No setup fees, no contracts.</p>
+    <button class="btn-primary" style="background:#4caf50;box-shadow:0 0 28px rgba(76,175,80,0.3);">Launch Server →</button>
+  </div>
+
+  <footer>
+    <div class="logo" onclick="showPage('home')">Gokuldham <span>Cloud</span></div>
+    <p>© 2026 Gokuldham Cloud Hosting. All rights reserved.</p>
+    <div class="footer-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Support</a></div>
+  </footer>
+</div>
+
+<!-- ══════════════════ WEB SERVER ══════════════════ -->
+<div class="page" id="page-web">
+  <section class="detail-hero">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="detail-badge"><span class="badge-dot"></span> Free SSL • cPanel • One-Click WordPress</div>
+    <div class="detail-icon">🌐</div>
+    <div class="detail-title">Web <span class="highlight">Server</span> Hosting</div>
+    <div class="detail-sub">Fast, secure, and reliable shared hosting for websites, blogs, and e-commerce — with free SSL on every plan.</div>
+  </section>
+
+  <section class="pricing-section">
+    <div class="pricing-header">
+      <div class="section-label">Web Hosting Plans</div>
+      <div class="section-title">Launch Your Website Today</div>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="plan-name">Starter</div>
+        <div class="plan-price"><span class="cur">₹</span><span class="amt">99</span><span class="per">/mo</span></div>
+        <div class="plan-desc">For personal websites, blogs & small projects.</div>
+        <ul class="plan-specs">
+          <li><span class="chk">✓</span> 1 Website</li>
+          <li><span class="chk">✓</span> 10 GB NVMe Storage</li>
+          <li><span class="chk">✓</span> Free SSL Certificate</li>
+          <li><span class="chk">✓</span> 100 GB Bandwidth</li>
+          <li><span class="chk">✓</span> 5 Email Accounts</li>
+          <li><span class="chk">✓</span> cPanel Access</li>
+        </ul>
+        <button class="plan-btn outline">Get Started</button>
+      </div>
+      <div class="pricing-card popular">
+        <div class="popular-badge">Most Popular</div>
+        <div class="plan-name">Business</div>
+        <div class="plan-price"><span class="cur">₹</span><span class="amt">299</span><span class="per">/mo</span></div>
+        <div class="plan-desc">For growing businesses and WordPress sites.</div>
+        <ul class="plan-specs">
+          <li><span class="chk">✓</span> 10 Websites</li>
+          <li><span class="chk">✓</span> 50 GB NVMe Storage</li>
+          <li><span class="chk">✓</span> Free SSL + CDN</li>
+          <li><span class="chk">✓</span> Unlimited Bandwidth</li>
+          <li><span class="chk">✓</span> Unlimited Emails</li>
+          <li><span class="chk">✓</span> 24/7 Priority Support</li>
+        </ul>
+        <button class="plan-btn filled">Get Started</button>
+      </div>
+      <div class="pricing-card">
+        <div class="plan-name">Enterprise</div>
+        <div class="plan-price"><span class="cur">₹</span><span class="amt">799</span><span class="per">/mo</span></div>
+        <div class="plan-desc">For agencies, high-traffic sites & e-commerce.</div>
+        <ul class="plan-specs">
+          <li><span class="chk">✓</span> Unlimited Websites</li>
+          <li><span class="chk">✓</span> 200 GB NVMe Storage</li>
+          <li><span class="chk">✓</span> DDoS + CDN + SSL</li>
+          <li><span class="chk">✓</span> Unlimited Bandwidth</li>
+          <li><span class="chk">✓</span> Dedicated Account Manager</li>
+          <li><span class="chk">✓</span> Daily Backups</li>
+        </ul>
+        <button class="plan-btn outline">Get Started</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="specs-section">
+    <div class="specs-header">
+      <div class="section-label">Included Features</div>
+      <div class="section-title">Everything Your Website Needs</div>
+    </div>
+    <div class="specs-grid">
+      <div class="spec-card"><div class="sc-icon">🔒</div><div class="sc-title">Free SSL on All Plans</div><div class="sc-desc">Auto-renewing SSL certificates. HTTPS enabled in one click, zero cost.</div></div>
+      <div class="spec-card"><div class="sc-icon">⚡</div><div class="sc-title">One-Click WordPress</div><div class="sc-desc">Install WordPress, Joomla, Drupal & 50+ apps in one click via Softaculous.</div></div>
+      <div class="spec-card"><div class="sc-icon">🌍</div><div class="sc-title">Global CDN</div><div class="sc-desc">Content delivered from 35+ edge locations for fast load times everywhere.</div></div>
+      <div class="spec-card"><div class="sc-icon">📧</div><div class="sc-title">Professional Email</div><div class="sc-desc">Create yourname@yourdomain.com email addresses on all plans — free.</div></div>
+    </div>
+  </section>
+
+  <div class="cta-band">
+    <div class="cta-glow"></div>
+    <h2>Ready to Go Live?</h2>
+    <p>Launch your website today. Free domain on annual plans. 14-day money back guarantee.</p>
+    <button class="btn-primary">Start Free Trial →</button>
+  </div>
+
+  <footer>
+    <div class="logo" onclick="showPage('home')">Gokuldham <span>Cloud</span></div>
+    <p>© 2026 Gokuldham Cloud Hosting. All rights reserved.</p>
+    <div class="footer-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Support</a></div>
+  </footer>
+</div>
+
+<!-- ══════════════════ BOT HOSTING ══════════════════ -->
+<div class="page" id="page-bot">
+  <section class="detail-hero">
+    <div class="hero-grid"></div>
+    <div class="hero-glow" style="background:radial-gradient(circle,rgba(156,39,176,0.14) 0%,transparent 70%);"></div>
+    <div class="detail-badge" style="background:rgba(156,39,176,0.1);border-color:rgba(156,39,176,0.3);color:#ce93d8;">
+      <span style="width:6px;height:6px;background:#e91e63;border-radius:50%;animation:pulse 2s infinite;display:inline-block;flex-shrink:0;"></span>
+      24/7 Online • Zero Downtime
+    </div>
+    <div class="detail-icon">🤖</div>
+    <div class="detail-title">Bot <span style="background:linear-gradient(135deg,#9c27b0,#e91e63);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Hosting</span></div>
+    <div class="detail-sub">Keep your Discord, Telegram, or custom bots online 24/7 — with auto-restart, log access & instant deployment.</div>
+  </section>
+
+  <section class="pricing-section">
+    <div class="pricing-header">
+      <div class="section-label">Bot Hosting Plans</div>
+      <div class="section-title">Always Online, Always Ready</div>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="plan-name">Basic Bot</div>
+        <div class="plan-price"><span class="cur">₹</span><span class="amt">49</span><span class="per">/mo</span></div>
+        <div class="plan-desc">For lightweight single bots with simple commands.</div>
+        <ul class="plan-specs">
+          <li><span class="chk" style="color:#ce93d8;">✓</span> 1 Bot Process</li>
+          <li><span class="chk" style="color:#ce93d8;">✓</span> 512 MB RAM</li>
+          <li><span class="chk" style="color:#ce93d8;">✓</span> 2 GB Storage</li>
+          <li><span class="chk" style="color:#ce93d8;">✓</span> Node.js / Python</li>
+          <li><span class="chk" style="color:#ce93d8;">✓</span> Auto Restart</li>
+          <li><span class="chk" style="color:#ce93d8;">✓</span> Web Console</li>
+        </ul>
+        <button class="plan-btn outline">Get Started</button>
+      </div>
+      <div class="pricing-card popular" style="border-color:#9c27b0;">
+        <div class="popular-badge" style="background:linear-gradient(135deg,#9c27b0,#e91e63);">Most Popular</div>
+        <div class="plan-name">Pro Bot</div>
+        <div class="plan-price"><span class="cur">₹</span><span class="amt">149</span><span class="per">/mo</span></div>
+        <div class="plan-desc">For feature-rich bots with databases and APIs.</div>
+        <ul class="plan-specs">
+          <li><span class="chk" style="color:#ce93d8;">✓</span> 3 Bot Processes</li>
+          <li><span class="chk" style="color:#ce93d8;">✓</span> 2 GB RAM</li>
+          <li><span class="chk" style="color:#ce93d8;">✓</span> 10 GB Storage</li>
+          <li><span class="chk" style="color:#ce93d8;">✓</span> Node / Python / Java</li>
+          <li><span class="chk" style="color:#ce93d8;">✓</span> SQLite / MongoDB</li>
+          <li><span class="chk" style="color:#ce93d8;">✓</span> Log Viewer + Alerts</li>
+        </ul>
+        <button class="plan-btn filled" style="background:linear-gradient(135deg,#9c27b0,#e91e63);box-shadow:0 0 22px rgba(156,39,176,0.3);">Get Started</button>
+      </div>
+      <div class="pricing-card">
+        <div class="plan-name">Mega Bot</div>
+        <div class="plan-price"><span class="cur">₹</span><span class="amt">399</span><span class="per">/mo</span></div>
+        <div class="plan-desc">For bot networks, large servers & enterprise bots.</div>
+        <ul class="plan-specs">
+          <li><span class="chk" style="color:#ce93d8;">✓</span> Unlimited Bots</li>
+          <li><span class="chk" style="color:#ce93d8;">✓</span> 8 GB RAM</li>
+          <li><span class="chk" style="color:#ce93d8;">✓</span> 50 GB SSD Storage</li>
+          <li><span class="chk" style="color:#ce93d8;">✓</span> All Languages</li>
+          <li><span class="chk" style="color:#ce93d8;">✓</span> MySQL + Redis</li>
+          <li><span class="chk" style="color:#ce93d8;">✓</span> Dedicated Support</li>
+        </ul>
+        <button class="plan-btn outline">Get Started</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="specs-section">
+    <div class="specs-header">
+      <div class="section-label">Bot Features</div>
+      <div class="section-title">Built for Developers</div>
+    </div>
+    <div class="specs-grid">
+      <div class="spec-card"><div class="sc-icon">🔄</div><div class="sc-title">Auto Restart</div><div class="sc-desc">Bot crashed? We auto-restart it instantly. Stays online even after runtime errors.</div></div>
+      <div class="spec-card"><div class="sc-icon">🖥️</div><div class="sc-title">Web Console</div><div class="sc-desc">View live logs, restart, and manage your bot from any browser — no SSH needed.</div></div>
+      <div class="spec-card"><div class="sc-icon">🔌</div><div class="sc-title">Git Deployment</div><div class="sc-desc">Push to GitHub and your bot auto-deploys. CI/CD built in for seamless updates.</div></div>
+      <div class="spec-card"><div class="sc-icon">🛡️</div><div class="sc-title">Secure Containers</div><div class="sc-desc">Isolated environment for each bot. Your tokens and secrets are always safe.</div></div>
+    </div>
+  </section>
+
+  <div class="cta-band">
+    <div class="cta-glow" style="background:radial-gradient(circle,rgba(156,39,176,0.08) 0%,transparent 70%);"></div>
+    <h2>Deploy Your Bot in 60 Seconds</h2>
+    <p>Upload your code, set your token, and go live instantly. No complicated setup needed.</p>
+    <button class="btn-primary" style="background:linear-gradient(135deg,#9c27b0,#e91e63);box-shadow:0 0 28px rgba(156,39,176,0.3);">Deploy Bot Now →</button>
+  </div>
+
+  <footer>
+    <div class="logo" onclick="showPage('home')">Gokuldham <span>Cloud</span></div>
+    <p>© 2026 Gokuldham Cloud Hosting. All rights reserved.</p>
+    <div class="footer-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Support</a></div>
+  </footer>
+</div>
+
+<script>
+  const pageLabels = {
+    vps: '🖥️ VPS Hosting',
+    minecraft: '⛏️ Minecraft',
+    web: '🌐 Web Server',
+    bot: '🤖 Bot Hosting'
+  };
+
+  function showPage(name) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const target = document.getElementById('page-' + name);
+    if (target) {
+      target.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    const navRight = document.getElementById('nav-right');
+    if (name === 'home') {
+      navRight.innerHTML = '<button class="nav-cta">Get Started Free</button>';
+    } else {
+      navRight.innerHTML = `
+        <button class="back-btn" onclick="showPage('home')">← Back to Home</button>
+        <div class="breadcrumb">Home / <span>${pageLabels[name] || name}</span></div>
+      `;
+    }
+  }
+</script>
+</body>
+</html>
