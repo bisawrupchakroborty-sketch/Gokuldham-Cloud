@@ -154,15 +154,24 @@
       padding-top: 58px
     }
 
-    .hero {
-      position: relative;
-      min-height: calc(100vh - 58px);
-      display: flex;
-      align-items: center;
-      background: #07090f;
-      overflow: hidden
-    }
+    .hero{
+  position:relative;
 
+  min-height:75vh;
+
+  display:flex;
+  align-items:center;
+
+  overflow:hidden;
+
+  background:
+    linear-gradient(rgba(5,8,18,0.82), rgba(5,8,18,0.88)),
+    url('https://raw.githubusercontent.com/bisawrupchakroborty-sketch/Gokuldham-Cloud/main/bg.jpg');
+
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+}
     .hero-dots {
       position: absolute;
       inset: 0;
@@ -193,19 +202,22 @@
       pointer-events: none
     }
 
-    .hero-inner {
-      position: relative;
-      z-index: 2;
-      width: 100%;
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 3rem 4%;
-      display: flex;
-      align-items: center;
-      gap: 2.5rem;
-      flex-wrap: wrap
-    }
+    .hero-inner{
+  position:relative;
+  z-index:2;
 
+  width:100%;
+  max-width:1280px;
+
+  margin:0 auto;
+
+  padding:2rem 4%;
+
+  display:flex;
+  align-items:center;
+  gap:2.5rem;
+  flex-wrap:wrap;
+}
     .hero-l {
       flex: 1;
       min-width: 300px
@@ -2530,6 +2542,18 @@
     });
     window.addEventListener('load', startBars);
   </script>
+  <audio id="bgMusic" loop>
+  <source src="https://raw.githubusercontent.com/bisawrupchakroborty-sketch/Gokuldham-Cloud/main/paisa.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  const music = document.getElementById("bgMusic");
+
+  document.addEventListener("click", () => {
+    music.volume = 0.25;
+    music.play();
+  }, { once: true });
+</script>
 </body>
 
 </html>
