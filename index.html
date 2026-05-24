@@ -1568,6 +1568,62 @@
   background-position:center;
   background-repeat:no-repeat;
 }
+
+.app-page{
+  min-height:100vh;
+  padding:100px 20px;
+  background:#080c18;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.app-card{
+  width:100%;
+  max-width:500px;
+  background:#0d1628;
+  border:1px solid rgba(245,197,24,.2);
+  border-radius:20px;
+  padding:35px;
+  text-align:center;
+}
+
+.app-logo{
+  width:120px;
+  height:120px;
+  border-radius:25px;
+  border:3px solid #f5c518;
+  object-fit:cover;
+  margin-bottom:20px;
+}
+
+.app-title{
+  font-size:2rem;
+  font-weight:800;
+  color:white;
+  margin-bottom:10px;
+}
+
+.app-title span{
+  color:#f5c518;
+}
+
+.app-desc{
+  color:#8fa3c8;
+  line-height:1.7;
+  margin-bottom:25px;
+}
+
+.app-btn{
+  display:inline-block;
+  background:#f5c518;
+  color:#080c18;
+  padding:14px 30px;
+  border-radius:10px;
+  font-weight:800;
+  text-decoration:none;
+}
+
   </style>
 </head>
 
@@ -1586,6 +1642,7 @@
       <li><a onclick="showPage('minecraft')">Minecraft</a></li>
       <li><a onclick="showPage('web')">Web Server</a></li>
       <li><a onclick="showPage('bot')">Bot Hosting</a></li>
+      <li><a onclick="showPage('tournamentapp')">Tournament App</a></li>
       <li><a onclick="showPage('ticket')">Support</a></li>
     </ul>
     <div class="nr" id="nav-right">
@@ -1785,6 +1842,18 @@
               <div class="svc-a">Open Ticket →</div>
             </div>
           </div>
+          <div class="svc-c" onclick="showPage('tournamentapp')">
+  <div class="svc-thumb t-web">📱</div>
+
+  <div class="svc-b">
+    <div class="svc-n">Tournament App</div>
+
+    <div class="svc-d">
+      Download our official tournament app and join tournaments easily.
+    </div>
+
+    <div class="svc-a">Download App →</div>
+  </div>
         </div>
       </section>
 
@@ -2368,6 +2437,36 @@
     </div>
   </div>
 
+  <!-- ════ TOURNAMENT APP ════ -->
+<div class="page" id="page-tournamentapp">
+
+  <div class="app-page">
+
+    <div class="app-card">
+
+      <img class="app-logo"
+      src="https://raw.githubusercontent.com/bisawrupchakroborty-sketch/Gokuldham-Cloud/main/Gokuldham.png">
+
+      <div class="app-title">
+        Gokuldham <span>Tournament</span> App
+      </div>
+
+      <div class="app-desc">
+        Download our official tournament app and join Free Fire,
+        BGMI and Minecraft tournaments easily.
+      </div>
+
+      <a class="app-btn"
+      href="https://www.mediafire.com/file/yq8gx7raakdrtw0/com.companyname.gokuldhamturnament+(1).apk/file">
+        📥 Download App
+      </a>
+
+    </div>
+
+  </div>
+
+</div>
+
   <!-- ════ TICKET ════ -->
   <div class="page" id="page-ticket">
     <div class="dw">
@@ -2543,7 +2642,7 @@
     window.addEventListener('load', startBars);
   </script>
   <audio id="bgMusic" loop>
-  <source src="https://raw.githubusercontent.com/bisawrupchakroborty-sketch/Gokuldham-Cloud/main/paisa.mp3" type="audio/mpeg">
+  <source src="https://raw.githubusercontent.com/bisawrupchakroborty-sketch/Gokuldham-Cloud/main/neon.mp3" type="audio/mpeg">
 </audio>
 
 <script>
