@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VPS Hosting India | Gokuldham Cloud</title><meta name="description" content="Intel, AMD and Ryzen VPS hosting plans in India."><meta name="robots" content="index, follow">
+<link rel="canonical" href="https://gokuldham.qzz.io/">
+<link rel="icon" href="https://raw.githubusercontent.com/bisawrupchakroborty-sketch/Gokuldham-Cloud/main/Gokuldham.png"><meta name="theme-color" content="#07101d">
+<meta property="og:title" content="VPS Hosting India | Gokuldham Cloud"><meta property="og:description" content="Intel, AMD and Ryzen VPS hosting plans in India."><meta property="og:image" content="https://raw.githubusercontent.com/bisawrupchakroborty-sketch/Gokuldham-Cloud/main/Gokuldham.png"><meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"><script defer src="script.js"></script>
+
+<style>
+.vps-hero{position:relative;min-height:380px;display:flex;align-items:center;border-bottom:1px solid rgba(255,55,55,.16);overflow:hidden;background:#050506}
+.vps-hero-bg{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.92)),url('https://raw.githubusercontent.com/bisawrupchakroborty-sketch/Gokuldham-Cloud/main/background1.png');background-size:cover;background-position:center;filter:saturate(.95)}
+.vps-hero-bg:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 20%,rgba(255,52,52,.22),transparent 40%),linear-gradient(90deg,rgba(0,0,0,.5),transparent,rgba(0,0,0,.5))}
+.vps-hero-inner{position:relative;text-align:center;padding-top:90px;padding-bottom:55px;z-index:2}
+.vps-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,64,64,.28);padding:7px 15px;border-radius:999px;font-size:.82rem;font-weight:800;color:#fff;box-shadow:0 0 28px rgba(255,45,45,.18)}
+.vps-hero h1{font-size:clamp(2.5rem,7vw,5rem);line-height:.98;margin:24px 0 18px;font-weight:900;letter-spacing:-2px;color:#fff}
+.grad-red{background:linear-gradient(90deg,#ff3535,#ffcf4a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.vps-hero p{max-width:760px;margin:0 auto;color:#b7c0cf;font-size:1.05rem;line-height:1.7}
+.vps-stats{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px}.vps-stats div{min-width:130px;padding:15px 24px;border-radius:12px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(12px)}.vps-stats b{display:block;color:#fff;font-size:1.4rem}.vps-stats span{display:block;text-transform:uppercase;font-size:.65rem;color:#8f98a8;margin-top:4px}
+.vps-builder{background:#020303;padding:55px 0 80px}.step-title{display:flex;align-items:center;gap:13px;margin:26px 0 20px}.step-title span{width:28px;height:28px;border-radius:8px;background:rgba(255,46,46,.12);border:1px solid rgba(255,46,46,.45);color:#ff3b3b;display:grid;place-items:center;font-weight:900;font-size:.82rem}.step-title h2{font-size:1.18rem;color:#fff;font-weight:900}.step-title strong{color:#ff4242}
+.select-grid{display:grid;gap:16px;margin-bottom:42px}.location-grid{grid-template-columns:repeat(3,minmax(0,1fr));max-width:880px}.processor-grid{grid-template-columns:repeat(auto-fit,minmax(260px,1fr));max-width:1180px}.select-card{position:relative;text-align:left;background:#080909;border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:24px 22px;color:#fff;cursor:pointer;transition:.25s;min-height:142px}.select-card:hover{border-color:rgba(255,56,56,.55);transform:translateY(-3px)}.select-card.selected{border-color:#ff3737;background:linear-gradient(135deg,rgba(255,49,49,.14),rgba(22,8,8,.55));box-shadow:0 20px 50px rgba(255,35,35,.18)}.select-card em{position:absolute;right:22px;top:28px;text-transform:uppercase;color:#ff3f3f;font-style:normal;font-weight:900;font-size:.68rem;letter-spacing:.8px}.select-card i{width:44px;height:44px;border-radius:12px;background:rgba(255,55,55,.1);border:1px solid rgba(255,55,55,.25);display:grid;place-items:center;color:#ff3b3b;font-style:normal;margin-bottom:18px}.select-card h3{font-size:1.28rem;font-weight:900;margin:0 0 6px;color:#d6d6d6}.select-card.selected h3{color:#ff4242}.select-card p{color:#9aa2b1;margin:0}.processor-card{min-height:230px}.processor-card ul{list-style:none;margin:14px 0 0;padding:0}.processor-card li{font-size:.86rem;color:#b9c3d3;margin:6px 0}.processor-card li:before{content:'✓';color:#ff4242;margin-right:7px}
+.vps-plan-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:20px}.vps-card{position:relative;background:linear-gradient(145deg,#08090c,#050505);border:1px solid rgba(43,133,255,.45);border-radius:16px;padding:28px 28px 26px;min-height:405px;box-shadow:0 0 40px rgba(0,0,0,.25);overflow:hidden}.vps-card:before{content:"";position:absolute;inset:-80px -50px auto auto;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(43,133,255,.18),transparent 62%);pointer-events:none}.vps-card.purple{border-color:#8b55ff}.vps-card.purple:before{background:radial-gradient(circle,rgba(139,85,255,.22),transparent 62%)}.vps-card.red{border-color:#ff4242}.vps-card.red:before{background:radial-gradient(circle,rgba(255,66,66,.20),transparent 62%)}.vps-card.popular{box-shadow:0 0 28px rgba(139,85,255,.25)}.popular-badge{position:absolute;right:28px;top:24px;background:#8b55ff;color:#fff;border-radius:999px;padding:7px 13px;font-size:.68rem;font-weight:900;text-transform:uppercase;letter-spacing:1px;box-shadow:0 0 18px rgba(139,85,255,.7)}.plan-top{display:flex;align-items:center;gap:12px;margin-bottom:24px}.plan-icon{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;border:1px solid currentColor;background:rgba(45,132,255,.11);color:#3389ff}.vps-card.purple .plan-icon{color:#8b55ff;background:rgba(139,85,255,.12)}.vps-card.red .plan-icon{color:#ff4242;background:rgba(255,66,66,.12)}.plan-tier{border:1px solid currentColor;border-radius:6px;padding:6px 11px;text-transform:uppercase;letter-spacing:2px;font-size:.66rem;font-weight:900;color:#3389ff}.vps-card.purple .plan-tier{color:#8b55ff}.vps-card.red .plan-tier{color:#ff4242}.vps-card h3{font-size:1.55rem;letter-spacing:-.5px;margin:0 0 18px;color:#fff;font-weight:900}.vps-price{font-size:2.35rem;font-weight:900;color:#3389ff;margin-bottom:24px}.vps-card.purple .vps-price{color:#8b55ff}.vps-card.red .vps-price{color:#ff4242}.vps-price small{font-size:1rem;color:#a0a7b4;font-weight:600}.spec-list{border-top:1px solid rgba(255,255,255,.09);padding-top:22px;margin-bottom:22px}.spec{display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid rgba(255,255,255,.06);padding:12px 0;color:#9fa9ba}.spec b{color:#fff}.pillrow{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0 22px}.mini-pill{border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.045);border-radius:999px;padding:7px 12px;font-size:.77rem;color:#b8c0cf}.deploy{display:block;text-align:center;border:1px solid currentColor;border-radius:9px;padding:14px 18px;text-transform:uppercase;letter-spacing:3px;font-weight:900;text-decoration:none;color:#3389ff}.vps-card.purple .deploy{color:#8b55ff}.vps-card.red .deploy{color:#ff4242}.deploy:hover{background:currentColor;color:#050505}
+@media(max-width:900px){.location-grid,.processor-grid,.vps-plan-grid{grid-template-columns:1fr}.vps-hero h1{font-size:2.5rem}.vps-hero-inner{padding-top:95px}.select-card{min-height:auto}.vps-card{padding:24px}.vps-stats div{min-width:120px}.vps-builder{padding-top:35px}.step-title{margin-left:4px}}
+</style>
+</head>
+<body>
+<div class="loader"><div class="loader-ring"><img src="https://raw.githubusercontent.com/bisawrupchakroborty-sketch/Gokuldham-Cloud/main/Gokuldham.png" alt="Gokuldham Cloud"></div><p>Loading Gokuldham Cloud</p></div>
+<div class="bg-grid"></div><div class="cursor-glow"></div>
+<nav class="nav premium-nav">
+  <div class="container navin">
+    <a class="brand" href="index.html"><img src="https://raw.githubusercontent.com/bisawrupchakroborty-sketch/Gokuldham-Cloud/main/Gokuldham.png" alt="Gokuldham Cloud logo"><span>Gokuldham <b>Cloud</b><small>Indian Hosting</small></span></a>
+    <button class="menu" onclick="toggleMenu()" aria-label="Open menu">☰</button>
+    <div class="links mega-links" id="navLinks">
+      <a class="home-link" href="index.html">Home</a>
+      <div class="nav-drop"><button type="button" class="drop-main">Minecraft <span>⌄</span></button><div class="drop-panel small">
+        <a href="minecraft.html"><i></i> India Plans</a>
+        <a href="minecraft.html#singapore"><i></i> Singapore Plans <em>Soon</em></a>
+        <a href="minecraft.html#germany"><i></i> Germany Plans <em>Soon</em></a>
+      </div></div>
+      <div class="nav-drop active"><button type="button" class="drop-main">VPS <span>⌄</span></button><div class="drop-panel">
+        <a href="vps.html#intel"><i></i> Intel Xeon VPS Plans</a>
+        <a href="vps.html#amd"><i></i> AMD EPYC VPS Plans</a>
+        <a href="vps.html#ryzen"><i></i> AMD Ryzen 9 VPS Plans</a>
+      </div></div>
+      <div class="nav-drop"><button type="button" class="drop-main">Other Games <span>⌄</span></button><div class="drop-panel">
+        <a href="game-server.html"><i></i> Minecraft Game Server</a>
+        <a href="game-server.html#fivem"><i></i> FiveM Plans <em>Soon</em></a>
+        <a href="game-server.html#cs2"><i></i> CS2 Plans <em>Soon</em></a>
+        <a href="game-server.html#rust"><i></i> Rust Plans <em>Soon</em></a>
+        <a href="game-server.html#palworld"><i></i> Palworld Plans <em>Soon</em></a>
+      </div></div>
+      <div class="nav-drop"><button type="button" class="drop-main">Other Hostings <span>⌄</span></button><div class="drop-panel tall">
+        <a href="web-hosting.html"><i></i> Web Hosting</a>
+        <a href="bot-hosting.html"><i></i> Bot Hosting</a>
+        <a href="support.html"><i></i> RDP Hosting</a>
+        <a href="domain.html"><i></i> Domain Plans</a>
+        <a href="storage.html"><i></i> Storage Servers</a>
+        <a href="dedicated.html"><i></i> Dedicated Machines</a>
+      </div></div>
+      <a class="" href="tournament-app.html">Tournament App</a>
+      <div class="nav-drop"><button type="button" class="drop-main">Gokuldham Cloud <span>⌄</span></button><div class="drop-panel tall">
+        <a href="about.html#team"><i></i> Meet our Team</a>
+        <a href="about.html"><i></i> About Us</a>
+        <a href="about.html#infrastructure"><i></i> Infrastructure</a>
+        <a href="terms.html"><i></i> Terms and Policies</a>
+        <a href="privacy.html"><i></i> Privacy Policy</a>
+        <a href="support.html"><i></i> Payment Methods</a>
+      </div></div>
+      <a class="navbtn" href="https://discord.gg/3SnaHfPxQq" target="_blank">Login / Discord</a>
+    </div>
+  </div>
+</nav>
+<main>
+<section class="vps-hero">
+  <div class="vps-hero-bg"></div>
+  <div class="container vps-hero-inner">
+    <span class="vps-badge">🇮🇳 India VPS Plans</span>
+    <h1>India VPS <span class="grad-red">Plans</span></h1>
+    <p>Premium VPS infrastructure for developers, businesses and hosting projects with low latency India nodes, full root access and instant deployment.</p>
+    <div class="vps-stats">
+      <div><b>12</b><span>Plans</span></div>
+      <div><b>3</b><span>Processors</span></div>
+      <div><b>99.9%</b><span>Uptime SLA</span></div>
+      <div><b>&lt;60s</b><span>Setup Time</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="vps-builder" id="intel">
+  <div class="container">
+    <div class="step-title"><span>1</span><h2>Select your location</h2></div>
+    <div class="select-grid location-grid">
+      <button class="select-card" data-location="Germany" onclick="selectVpsLocation(this)">
+        <i>⌖</i><h3>Germany</h3><p>1 processor</p>
+      </button>
+      <button class="select-card selected" data-location="India" onclick="selectVpsLocation(this)">
+        <em>✓ Selected</em><i>⌖</i><h3>India</h3><p>2 processors</p>
+      </button>
+      <button class="select-card" data-location="Singapore-OVH" onclick="selectVpsLocation(this)">
+        <i>⌖</i><h3>Singapore-OVH</h3><p>1 processor</p>
+      </button>
+    </div>
+
+    <div class="step-title"><span>2</span><h2>Select a processor</h2></div>
+    <div class="select-grid processor-grid">
+      <button class="select-card processor-card selected" data-cpu="platinum" onclick="selectVpsCpu('platinum', this)">
+        <em>✓ Selected</em><i>▣</i><h3>Intel Xeon Platinum 8269-CY</h3>
+        <ul><li>High Single-Core Performance</li><li>NVMe SSD Storage</li><li>DDoS Protection</li><li>Instant Server Deployment</li><li>Full Root & Plugin Support</li></ul>
+      </button>
+      <button class="select-card processor-card" data-cpu="e5" onclick="selectVpsCpu('e5', this)">
+        <i>▣</i><h3>Intel Xeon E5-2696 v4</h3>
+        <ul><li>High Single-Core Performance</li><li>NVMe SSD Storage</li><li>DDoS Protection</li><li>Instant Server Deployment</li><li>Full Root & Plugin Support</li></ul>
+      </button>
+      <button class="select-card processor-card" data-cpu="amd" onclick="selectVpsCpu('amd', this)">
+        <i>▣</i><h3>AMD EPYC 7F72</h3>
+        <ul><li>Dedicated High-Frequency Resources</li><li>Ultra-Fast NVMe SSD Storage</li><li>Premium DDoS Protection</li><li>Low-Latency Indian Network</li><li>Automated Daily Backups</li></ul>
+      </button>
+      <button class="select-card processor-card" data-cpu="ryzen" onclick="selectVpsCpu('ryzen', this)">
+        <i>▣</i><h3>AMD Ryzen 9 9950X</h3>
+        <ul><li>Dedicated High-Performance Resources</li><li>Blazing-Fast NVMe SSD Storage</li><li>Premium DDoS Protection</li><li>Low-Latency Indian Network</li><li>99.9% Uptime Guarantee</li></ul>
+      </button>
+    </div>
+
+    <div class="step-title"><span>3</span><h2><strong id="vpsCpuTitle">Intel Xeon Platinum 8269-CY</strong> plans</h2></div>
+    <div class="vps-plan-grid" id="vpsPlanGrid"></div>
+  </div>
+</section>
+</main>
+<footer class="footer"><div class="container footgrid"><div><a class="brand" href="index.html"><img src="https://raw.githubusercontent.com/bisawrupchakroborty-sketch/Gokuldham-Cloud/main/Gokuldham.png" alt="Gokuldham Cloud logo"><span>Gokuldham <b>Cloud</b></span></a><p>Affordable Indian hosting for gamers, developers and communities with 24/7 Discord support.</p></div><div><b>Hosting</b><a href="vps.html">VPS Hosting</a><a href="game-server.html">Game Server</a><a href="minecraft.html">Minecraft Hosting</a><a href="web-hosting.html">Web Hosting</a><a href="bot-hosting.html">Bot Hosting</a><a href="storage.html">Storage Servers</a><a href="dedicated.html">Dedicated Machines</a></div><div><b>Company</b><a href="about.html">About</a><a href="support.html">Support</a><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms</a></div><div><b>Contact</b><a href="https://discord.gg/3SnaHfPxQq" target="_blank">Discord Support</a><a href="mailto:support@gokuldham.cloud">support@gokuldham.cloud</a><a href="index.html#faq">FAQ</a></div></div><div class="copy">© 2026 Gokuldham Cloud Hosting. All rights reserved.</div></footer>
+
+<script>
+const vpsPlans = {
+  platinum: {
+    title: 'Intel Xeon Platinum 8269-CY',
+    plans: [
+      ['VLTN - STARTER','399.00','Budget','blue','6 GB RAM','2 vCores','50 GB NVMe','1 Gbps Port','1 Dedicated IPv4'],
+      ['VLTN - BASIC','559.00','Budget','blue','8 GB RAM','2 vCores','80 GB NVMe','1 Gbps Port','1 Dedicated IPv4'],
+      ['VLTN - STANDARD','799.00','Budget','blue','12 GB RAM','4 vCores','100 GB NVMe','1 Gbps Port','1 Dedicated IPv4'],
+      ['VLTN - PLUS','1099.00','Performance','purple','16 GB RAM','6 vCores','150 GB NVMe','1 Gbps Port','1 Dedicated IPv4','Most Popular'],
+      ['VLTN - PRO','1359.00','Performance','purple','24 GB RAM','6 vCores','200 GB NVMe','1 Gbps Port','1 Dedicated IPv4'],
+      ['VLTN - ELITE','1499.00','Premium','red','32 GB RAM','8 vCores','300 GB NVMe','1 Gbps Port','1 Dedicated IPv4']
+    ]
+  },
+  e5: {
+    title: 'Intel Xeon E5-2696 v4',
+    plans: [
+      ['VLTN - STARTER','299.00','Premium','red','6 GB RAM','2 vCores','50 GB NVMe','1 Gbps Port','1 Dedicated IPv4']
+    ]
+  },
+  amd: {
+    title: 'AMD EPYC 7F72',
+    plans: [
+      ['VLTN - STARTER','459.00','Budget','blue','6 GB RAM','2 vCores','50 GB NVMe','1 Gbps Port','1 Dedicated IPv4'],
+      ['VLTN - BASIC','659.00','Budget','blue','8 GB RAM','2 vCores','80 GB NVMe','1 Gbps Port','1 Dedicated IPv4'],
+      ['VLTN - STANDARD','1049.00','Budget','blue','12 GB RAM','4 vCores','100 GB NVMe','1 Gbps Port','1 Dedicated IPv4'],
+      ['VLTN - PLUS','1249.00','Performance','purple','16 GB RAM','6 vCores','150 GB NVMe','1 Gbps Port','1 Dedicated IPv4','Most Popular'],
+      ['VLTN - PRO','1599.00','Performance','purple','24 GB RAM','6 vCores','200 GB NVMe','1 Gbps Port','1 Dedicated IPv4'],
+      ['VLTN - ELITE','1999.00','Premium','red','32 GB RAM','8 vCores','500 GB NVMe','1 Gbps Port','1 Dedicated IPv4']
+    ]
+  },
+  ryzen: {
+    title: 'AMD Ryzen 9 9950X',
+    plans: [
+      ['VLTN - STARTER','699.00','Budget','blue','4 GB RAM','1 vCore','50 GB NVMe','1 Gbps Port','1 Dedicated IPv4'],
+      ['VLTN - BASIC','1199.00','Budget','blue','8 GB RAM','2 vCores','80 GB NVMe','1 Gbps Port','1 Dedicated IPv4'],
+      ['VLTN - STANDARD','1899.00','Performance','purple','16 GB RAM','4 vCores','150 GB NVMe','1 Gbps Port','1 Dedicated IPv4','Most Popular'],
+      ['VLTN - PLUS','2599.00','Performance','purple','24 GB RAM','5 vCores','180 GB NVMe','1 Gbps Port','1 Dedicated IPv4'],
+      ['VLTN - PRO','3759.00','Premium','red','32 GB RAM','6 vCores','200 GB NVMe','1 Gbps Port','1 Dedicated IPv4'],
+      ['VLTN - ELITE','4899.00','Premium','red','48 GB RAM','8 vCores','250 GB NVMe','1 Gbps Port','1 Dedicated IPv4']
+    ]
+  }
+};
+function selectVpsLocation(el){document.querySelectorAll('.location-grid .select-card').forEach(x=>{x.classList.remove('selected');let e=x.querySelector('em'); if(e) e.remove();}); el.classList.add('selected'); if(!el.querySelector('em')) el.insertAdjacentHTML('afterbegin','<em>✓ Selected</em>');}
+function selectVpsCpu(cpu, el){document.querySelectorAll('.processor-grid .select-card').forEach(x=>{x.classList.remove('selected');let e=x.querySelector('em'); if(e) e.remove();}); el.classList.add('selected'); if(!el.querySelector('em')) el.insertAdjacentHTML('afterbegin','<em>✓ Selected</em>'); renderVpsPlans(cpu);}
+function renderVpsPlans(cpu='platinum'){
+  const data=vpsPlans[cpu];
+  const title=document.getElementById('vpsCpuTitle'); if(title) title.textContent=data.title;
+  const grid=document.getElementById('vpsPlanGrid'); if(!grid) return;
+  grid.innerHTML=data.plans.map(p=>{const [name,price,tier,color,ram,cores,storage,network,address,badge]=p; return `
+    <article class="vps-card ${color==='purple'?'purple':''} ${color==='red'?'red':''} ${badge?'popular':''}">
+      ${badge?`<div class="popular-badge">${badge}</div>`:''}
+      <div class="plan-top"><span class="plan-icon">▤</span><span class="plan-tier">${tier}</span></div>
+      <h3>${name}</h3>
+      <div class="vps-price">₹ ${price}<small> /month</small></div>
+      <div class="spec-list">
+        <div class="spec"><span>Memory</span><b>${ram}</b></div>
+        <div class="spec"><span>Processor</span><b>${cores}</b></div>
+        <div class="spec"><span>Storage</span><b>${storage}</b></div>
+        <div class="spec"><span>Network</span><b>${network}</b></div>
+        <div class="spec"><span>Address</span><b>${address}</b></div>
+      </div>
+      <div class="pillrow"><span class="mini-pill">🛡 DDoS protection</span><span class="mini-pill">⚡ Instant setup</span></div>
+      <a href="support.html" class="deploy">Deploy Now 🚀</a>
+    </article>`}).join('');
+}
+document.addEventListener('DOMContentLoaded',()=>{
+  const hash=(location.hash||'').replace('#','').toLowerCase();
+  const target = hash==='amd' ? 'amd' : (hash==='ryzen' ? 'ryzen' : (hash==='e5' ? 'e5' : 'platinum'));
+  const btn=document.querySelector(`.processor-grid .select-card[data-cpu="${target}"]`);
+  if(btn) selectVpsCpu(target, btn); else renderVpsPlans('platinum');
+});
+</script>
+</body></html>
